@@ -22,7 +22,6 @@
                 <a href="#services" data-lang-en="Products" data-lang-cn="产品">Products</a>
                 <a href="#about" data-lang-en="About Us" data-lang-cn="关于我们">About Us</a>
                 <a href="#contact" data-lang-en="Contact" data-lang-cn="联系我们">Contact</a>
-                <!-- 语言切换按钮 -->
                 <button id="langBtn" class="cta-button" style="margin-left:10px; padding:6px 12px;">中文</button>
             </nav>
             <button class="menu-toggle" aria-label="Toggle menu">
@@ -196,37 +195,31 @@
 
     <!-- 双语切换JS -->
     <script>
-        // 默认语言英文
         let currentLang = 'en';
         const langBtn = document.getElementById('langBtn');
 
-        // 初始化语言
         function initLang() {
             document.querySelectorAll('[data-lang-en]').forEach(el => {
                 el.textContent = el.getAttribute(`data-lang-${currentLang}`);
             });
         }
 
-        // 切换语言
         langBtn.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'cn' : 'en';
             langBtn.textContent = currentLang === 'en' ? '中文' : 'English';
             initLang();
         });
 
-        // 页面加载初始化
         window.onload = function(){
             initLang();
-            // 保留原模板脚本
             let script = document.createElement('script');
             script.src = 'tooplate-graphite-script.js';
             document.body.appendChild(script);
         };
 
-        // 原表单提交函数
         function handleSubmit(e) {
             e.preventDefault();
-            alert('Message sent successfully!');
+            alert(currentLang === 'en' ? 'Message sent successfully!' : '消息发送成功！');
             e.target.reset();
         }
     </script>
